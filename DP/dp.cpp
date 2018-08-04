@@ -15,7 +15,11 @@ void set_name_list(int *pre_name_list, int *name_list, int flg, int cnt) {
   if (flg == 1) name_list[cnt] = 1;
 }
 
+#ifdef NAME_DUMP
 int calc_dp(int dp[dp_num][dp_weight], int name_list[dp_num][dp_weight][max_num], const int goods_list[max_num][elem], const int goods_num) {
+#else
+int calc_dp(int dp[dp_num][dp_weight], const int goods_list[max_num][elem], const int goods_num) {
+#endif
   // dp table switch flg  stackoverflow回避のため
   int flg = 0; // 現在参照する行がどちらかを切り替えるflg
 
@@ -29,21 +33,21 @@ int calc_dp(int dp[dp_num][dp_weight], int name_list[dp_num][dp_weight][max_num]
         int val2 = dp[flg][w];
         if (val1 >= val2) {
           dp[un_flg][w] = val1; // 新しい値を代入
-#ifdef NAME_DUMP
+          
+#ifdef NAME_DUMP // param.hで切替
           set_name_list(name_list[flg][w - goods_list[i][0]], name_list[un_flg][w], 1, i);
 #endif
+
         }
         else {
           dp[un_flg][w] = val2; // 古い値を代入
-#ifdef NAME_DUMP
+
+#ifdef NAME_DUMP // param.hで切替
           set_name_list(name_list[flg][w], name_list[un_flg][w], 0, i);
 #endif
+
         }
       }
-
-#ifdef DEBUG
-      printf("%d\n", i * max_weight + w);
-#endif
     }
 
     flg = un_flg; // 次は違うflgの方向に代入するため、un_flgを代入

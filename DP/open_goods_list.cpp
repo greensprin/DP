@@ -11,7 +11,7 @@ int open_goods_list(const char *file_path, int goods_list[max_num][elem], char n
   FILE *fp = fopen(file_path, "r");
   if (fp == nullptr) {
     printf("this file is not found!\n");
-	return 0;
+	  return 0;
   }
 
   // ƒtƒ@ƒCƒ‹‚ð1s‚¸‚Â“Ç‚Ýž‚Ý
@@ -19,15 +19,15 @@ int open_goods_list(const char *file_path, int goods_list[max_num][elem], char n
   int weight = 0, value = 0;
   int goods_cnt = 0;
   for (int i = 0; fscanf(fp, "%s %d %d", goods_name, &weight, &value) != EOF; i++) {
-        if (i >= max_num) {
-          printf("this goods_list was reached to max goods_num. So canceled to read goods_list");
-          break;
-        }
+    if (i >= max_num) {
+      printf("this goods_list was reached to max goods_num. So canceled to read goods_list");
+      break;
+    }
 
-        // goods_list‚ÖŠi”[
-        strcpy(name[i], goods_name);
-        goods_list[i][0] = weight;
-        goods_list[i][1] = value;
+    // goods_list‚ÖŠi”[
+    strcpy(name[i], goods_name);
+    goods_list[i][0] = weight;
+    goods_list[i][1] = value;
 		goods_cnt++;
   }
 
