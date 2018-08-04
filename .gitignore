@@ -1,0 +1,11 @@
+*.exe
+
+.vs/*
+
+DP/x64/*
+
+x64/*
+
+DP.sln
+
+*.vcxproj*
