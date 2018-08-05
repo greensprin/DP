@@ -8,7 +8,7 @@
 
 //#define DEBUG
 
-void set_name_list(int *pre_name_list, int *name_list, int flg, int cnt) {
+void set_name_list(char *pre_name_list, char *name_list, int flg, int cnt) {
   for (int i = 0; i < cnt; i++) {
     name_list[i] = pre_name_list[i];
   }
@@ -16,7 +16,7 @@ void set_name_list(int *pre_name_list, int *name_list, int flg, int cnt) {
 }
 
 #ifdef NAME_DUMP
-int calc_dp(int dp[dp_num][dp_weight], int name_list[dp_num][dp_weight][max_num], const int goods_list[max_num][elem], const int goods_num) {
+int calc_dp(int dp[dp_num][dp_weight], char name_list[dp_num][dp_weight][max_num], const int goods_list[max_num][elem], const int goods_num) {
 #else
 int calc_dp(int dp[dp_num][dp_weight], const int goods_list[max_num][elem], const int goods_num) {
 #endif

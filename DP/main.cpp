@@ -25,13 +25,12 @@ int main(void) {
 
   // name_list作成
 #ifdef NAME_DUMP // param.hで切替
-  int name_list[dp_num][dp_weight][max_num] = {};
+  char name_list[dp_num][dp_weight][max_num] = {};
   // DP
   const int flg = calc_dp(dp, name_list, goods_list, goods_cnt);
 #else
   const int flg = calc_dp(dp, goods_list, goods_cnt);
 #endif
-
 
   printf("max val = %d\n", dp[flg][max_weight]);
 
@@ -43,6 +42,8 @@ int main(void) {
     }
   }
 #endif
+
+  getchar();
 
   return 0;
 }
